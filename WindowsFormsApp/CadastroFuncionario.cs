@@ -90,6 +90,9 @@ namespace WindowsFormsApp
             if (ValidarCampos())
             {
                 
+                // metodo ArmazenarFuncionario
+                // responsavel por inserir um novo objeto Funcionario
+                // em uma posição da list
                 listaFuncionarios.ArmazenarFuncionario(tbNome.Text,
                                                         float.Parse(tbSalario.Text),
                                                         float.Parse(tbDesconto.Text),
@@ -97,12 +100,15 @@ namespace WindowsFormsApp
                                                         tbCPF.Text,
                                                         cbDesconto.Checked);
 
+                // alimento uma "sublista" de item (que é uma linha da list view)
+                // "pegando" os dados  dos textbox 
                 ListViewItem item = new ListViewItem(new[] { tbNome.Text,
+                                                             tbCPF.Text,
                                                             float.Parse(tbSalario.Text).ToString("N2"),
                                                             float.Parse(tbDesconto.Text).ToString("N2"),
                                                             float.Parse(tbAdicional.Text).ToString("N2"),
                                                             float.Parse(tbLiquido.Text).ToString("N2") });
-                
+                // adicionando o objeto item na listview
                 lvListaFuncionarios.Items.Add(item);
 
                 MessageBox.Show($"Calculou Salário Líquido para o funcionário {tbNome.Text}", "Atenção");
@@ -138,16 +144,63 @@ namespace WindowsFormsApp
             CalcularLiquido();
             FormatarCampos();
         }
-                       
+         
+        // Evento Click do btnExcluir 
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
+            // Este for, percorre a lista de itens selecionados na listview
             for (int itemList = lvListaFuncionarios.SelectedItems.Count - 1; itemList >=0; itemList--)
             {
+                // cria um objeto tipo list view item
+                // joga pra esse objeto, a lista de funcionarios selecionados
                 ListViewItem lista = lvListaFuncionarios.SelectedItems[itemList];
-                lvListaFuncionarios.Items.Remove(lista);
+                // metodo remove = remove uma lista (item) da list view
+                lvListaFuncionarios.Items.Remove(lista); 
+
+                // obtem o text da posição 0 da minha sublista da listview
+                // que é a coluna "nome"
+                string nome = lista.SubItems[0].Text;
+
+                // chamada ao metodo RemoverFuncionario
+                // passando o parametro nome, obtido acima.
+                listaFuncionarios.RemoverFuncionario(nome);
             }
         }
-                
+
+        private void BtnOrdenar_Click(object sender, EventArgs e)
+        {
+            // metodo que ordena a lista de objetos funcionarios
+            listaFuncionarios.OrdenarFuncionario();
+
+            //limpa a listview (grid da tela)
+            lvListaFuncionarios.Items.Clear();
+
+            // obtem o tamanho da list
+            // lembrando que aqui neste escopo, o listaFuncionario não é manipulado como list
+            // apenas dentro da classe
+            int tamanhoLista = listaFuncionarios.RetornarTamanhoLista();
+
+            // objeto funcionarioObj "em branco"
+            Funcionario funcionarioObj = new Funcionario();
+            
+            //percorre a list do inicio ao fim
+            for (int indice = 0; indice < tamanhoLista; indice++)
+            {
+                // cada indice, funcionarioObj irá receber o objeto Funcionario da posição
+                funcionarioObj = listaFuncionarios.RetornaObjetoFuncionario(indice);
+
+                // alimento uma "sublista" de item (que é uma linha da list view)
+                // "pegando" os dados direto do funcionarioObj
+                ListViewItem item = new ListViewItem(new[] { funcionarioObj.nome,
+                                                             funcionarioObj.cpf,
+                                                             funcionarioObj.salarioBruto.ToString("N2"),
+                                                             funcionarioObj.desconto.ToString("N2"),
+                                                             funcionarioObj.adicional.ToString("N2"),
+                                                             funcionarioObj.salarioLiquido.ToString("N2") });
+                // adicionando o objeto item na listview
+                lvListaFuncionarios.Items.Add(item);
+            }
+        }
     }
 
     

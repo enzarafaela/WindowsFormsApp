@@ -49,6 +49,8 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.tbCPF = new System.Windows.Forms.MaskedTextBox();
             this.labelCPF = new System.Windows.Forms.Label();
+            this.Cpf = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnOrdenar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelNome
@@ -161,9 +163,9 @@
             // 
             // lvListaFuncionarios
             // 
-            this.lvListaFuncionarios.CheckBoxes = true;
             this.lvListaFuncionarios.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Nome,
+            this.Cpf,
             this.SalarioBruto,
             this.Desconto,
             this.Adicional,
@@ -171,7 +173,7 @@
             this.lvListaFuncionarios.FullRowSelect = true;
             this.lvListaFuncionarios.GridLines = true;
             this.lvListaFuncionarios.HideSelection = false;
-            this.lvListaFuncionarios.Location = new System.Drawing.Point(26, 238);
+            this.lvListaFuncionarios.Location = new System.Drawing.Point(30, 238);
             this.lvListaFuncionarios.MultiSelect = false;
             this.lvListaFuncionarios.Name = "lvListaFuncionarios";
             this.lvListaFuncionarios.Size = new System.Drawing.Size(463, 97);
@@ -183,7 +185,7 @@
             // Nome
             // 
             this.Nome.Text = "Nome";
-            this.Nome.Width = 175;
+            this.Nome.Width = 79;
             // 
             // SalarioBruto
             // 
@@ -223,7 +225,7 @@
             this.tbCPF.Mask = "000.000.000-00";
             this.tbCPF.Name = "tbCPF";
             this.tbCPF.Size = new System.Drawing.Size(100, 20);
-            this.tbCPF.TabIndex = 15;
+            this.tbCPF.TabIndex = 7;
             this.tbCPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // labelCPF
@@ -235,12 +237,29 @@
             this.labelCPF.TabIndex = 16;
             this.labelCPF.Text = "CPF:";
             // 
+            // Cpf
+            // 
+            this.Cpf.Text = "CPF";
+            this.Cpf.Width = 95;
+            // 
+            // btnOrdenar
+            // 
+            this.btnOrdenar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnOrdenar.Location = new System.Drawing.Point(265, 341);
+            this.btnOrdenar.Name = "btnOrdenar";
+            this.btnOrdenar.Size = new System.Drawing.Size(143, 23);
+            this.btnOrdenar.TabIndex = 17;
+            this.btnOrdenar.Text = "Ordenar Lista (por Nome)";
+            this.btnOrdenar.UseVisualStyleBackColor = true;
+            this.btnOrdenar.Click += new System.EventHandler(this.BtnOrdenar_Click);
+            // 
             // CadastroFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(505, 369);
+            this.Controls.Add(this.btnOrdenar);
             this.Controls.Add(this.labelCPF);
             this.Controls.Add(this.tbCPF);
             this.Controls.Add(this.btnExcluir);
@@ -290,6 +309,8 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.MaskedTextBox tbCPF;
         private System.Windows.Forms.Label labelCPF;
+        private System.Windows.Forms.ColumnHeader Cpf;
+        private System.Windows.Forms.Button btnOrdenar;
     }
 }
 

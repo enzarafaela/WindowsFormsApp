@@ -12,6 +12,9 @@ namespace WindowsFormsApp
         public string nome, cpf;
         public float salarioBruto, desconto, adicional, salarioLiquido;
 
+        //TrÊs Sobrecargas do Construtor "Funcionario"
+
+        // Construtor com 3 parametros
         public Funcionario(string nomeParam, float salarioBrutoParam, string CPF)
         {
             this.nome = nomeParam;
@@ -19,6 +22,13 @@ namespace WindowsFormsApp
             this.cpf = CPF;
         }
 
+        // Construtor vazio
+        public Funcionario()
+        {
+
+        }
+
+        // Construtor com cinco parametros
         public Funcionario(string nomeParam, float salarioBrutoParam, 
                           float descontoParam, float adicionalParam, string CPF)
         {
@@ -29,8 +39,11 @@ namespace WindowsFormsApp
             this.cpf = CPF;
         }
 
-       
-        public void CalcularLiquido(float salario, float desconto, float adicional)
+        
+        // Sobrecarga do Metodo CalcularLiquido 
+        // Sobrecarga= diferencia-se pela assinatura (parametros)
+        // Executa ou um ou outro metodo. Vai depender dos parametros.
+        public void CalcularLiquido(float salario, float desconto, float adicional) 
         {
             this.salarioLiquido = ((salario - desconto) + adicional);
         }
