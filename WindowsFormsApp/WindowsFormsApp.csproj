@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CadastroFuncionarioBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastroFuncionarioBD.Designer.cs">
+      <DependentUpon>CadastroFuncionarioBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gerente.cs" />
     <Compile Include="ListaFuncionario.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -62,6 +69,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="windowsFormsPOODataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>windowsFormsPOODataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CadastroFuncionarioBD.resx">
+      <DependentUpon>CadastroFuncionarioBD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +101,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="windowsFormsPOODataSet.xsc">
+      <DependentUpon>windowsFormsPOODataSet.xsd</DependentUpon>
+    </None>
+    <None Include="windowsFormsPOODataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>windowsFormsPOODataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="windowsFormsPOODataSet.xss">
+      <DependentUpon>windowsFormsPOODataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

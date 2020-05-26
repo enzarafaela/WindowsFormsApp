@@ -11,39 +11,63 @@ namespace WindowsFormsApp
         // Atributo da classe ListaFuncionario: Funcionarios
         // Funcionarios = lista de objetos Funcionario
         List<Funcionario> Funcionarios = new List<Funcionario>();
-        
+
         // Metodo Procedure (sem retorno)
         // Que irá inserir um unico objeto Funcionario dentro da lista de objetos Funcionarios
         public void ArmazenarFuncionario(string nome, float salario, float desconto,
-                                         float adicional, string cpf, bool semDesconto)
+                                         float adicional, string cpf, bool semDesconto, string cargo)
         {
-            // Cada item (indice) da lista é um objeto Funcionario que contem nome, cpf, salario, desconto
-            Funcionario funcionarioObj = new Funcionario(nome, salario, desconto, adicional, cpf);
 
-            // dependendo do valor da variavel semDesconto
-            // executa versões diferentes da CalcularLiquido (conceito de sobrecarga)
-            if (semDesconto)
-                funcionarioObj.CalcularLiquido(funcionarioObj.salarioBruto, funcionarioObj.adicional);
+            if (cargo != "Gerente")
+            {
+                // Cada item (indice) da lista é um objeto Funcionario que contem nome, cpf, salario, desconto
+                Funcionario funcionarioObj = new Funcionario(nome, salario, desconto, adicional, cpf, cargo);
+
+                funcionarioObj.CalcularBonus();
+
+                // dependendo do valor da variavel semDesconto
+                // executa versões diferentes da CalcularLiquido (conceito de sobrecarga)
+                if (semDesconto)
+                    funcionarioObj.CalcularLiquido(funcionarioObj.SalarioBruto, funcionarioObj.adicional);
+                else
+                    funcionarioObj.CalcularLiquido(funcionarioObj.SalarioBruto, funcionarioObj.desconto, funcionarioObj.adicional);
+
+                // Função add é herdada da list
+                Funcionarios.Add(funcionarioObj);
+            }
             else
-                funcionarioObj.CalcularLiquido(funcionarioObj.salarioBruto, funcionarioObj.desconto, funcionarioObj.adicional);
+            {
+                Gerente gerenteObj = new Gerente(nome, salario, desconto, adicional, cpf, cargo);
 
-            // Função add é herdada da list
-            Funcionarios.Add(funcionarioObj);
+                gerenteObj.CalcularBonus();
+
+                // dependendo do valor da variavel semDesconto
+                // executa versões diferentes da CalcularLiquido (conceito de sobrecarga)
+                if (semDesconto)
+                    gerenteObj.CalcularLiquido(gerenteObj.SalarioBruto, gerenteObj.adicional);
+                else
+                    gerenteObj.CalcularLiquido(gerenteObj.SalarioBruto, gerenteObj.desconto, gerenteObj.adicional);
+
+
+                // Função add é herdada da list
+                Funcionarios.Add(gerenteObj);
+            }
+
 
         }
 
-        public void RemoverFuncionario(String nome)
+        public void RemoverFuncionario(String cpf)
         {
             // Função removeall é herdada da list
-            Funcionarios.RemoveAll(f => f.nome == nome); // a expressão lambda é uma representação :
-                                                        // (input-parameters) => expression
+            Funcionarios.RemoveAll(f => f.cpf == cpf); // a expressão lambda é uma representação :
+                                                       // (input-parameters) => expression
         }
 
-        public int BuscarFuncionario(String nome)
+        public int BuscarFuncionario(String cpf)
         {
             // Função findindex é herdada da list
-            return Funcionarios.FindIndex(f => f.nome == nome); // expressao lambda. Parametro f do tipo Funcionario
-                                                                // variavel capturada: nome comparada com o nome recebido por parametro
+            return Funcionarios.FindIndex(f => f.cpf == cpf); // expressao lambda. Parametro f do tipo Funcionario
+                                                              // variavel capturada: nome comparada com o nome recebido por parametro
         }
 
         public void OrdenarFuncionario()
@@ -51,7 +75,7 @@ namespace WindowsFormsApp
             // Função OrderBy é herdada da list
             Funcionarios = Funcionarios.OrderBy(f => f.nome).ToList();
         }
-        
+
         // Retorna o tamanho da list.
         // Lembrando que esses metodos da list só existem dentro da classe.
         // em outro escopo, instanciado a classe ListaFuncionario, a lista está encapsulada dentro do objeto

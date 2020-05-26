@@ -42,6 +42,7 @@
             this.cbDesconto = new System.Windows.Forms.CheckBox();
             this.lvListaFuncionarios = new System.Windows.Forms.ListView();
             this.Nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cpf = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SalarioBruto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Desconto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Adicional = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,8 +50,10 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.tbCPF = new System.Windows.Forms.MaskedTextBox();
             this.labelCPF = new System.Windows.Forms.Label();
-            this.Cpf = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnOrdenar = new System.Windows.Forms.Button();
+            this.cbCargo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.funcionarioTableAdapter1 = new WindowsFormsApp.windowsFormsPOODataSetTableAdapters.FuncionarioTableAdapter();
             this.SuspendLayout();
             // 
             // labelNome
@@ -187,6 +190,11 @@
             this.Nome.Text = "Nome";
             this.Nome.Width = 79;
             // 
+            // Cpf
+            // 
+            this.Cpf.Text = "CPF";
+            this.Cpf.Width = 95;
+            // 
             // SalarioBruto
             // 
             this.SalarioBruto.Text = "Salario Bruto";
@@ -237,11 +245,6 @@
             this.labelCPF.TabIndex = 16;
             this.labelCPF.Text = "CPF:";
             // 
-            // Cpf
-            // 
-            this.Cpf.Text = "CPF";
-            this.Cpf.Width = 95;
-            // 
             // btnOrdenar
             // 
             this.btnOrdenar.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -253,12 +256,39 @@
             this.btnOrdenar.UseVisualStyleBackColor = true;
             this.btnOrdenar.Click += new System.EventHandler(this.BtnOrdenar_Click);
             // 
+            // cbCargo
+            // 
+            this.cbCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCargo.FormattingEnabled = true;
+            this.cbCargo.Items.AddRange(new object[] {
+            "Funcionario",
+            "Gerente"});
+            this.cbCargo.Location = new System.Drawing.Point(368, 43);
+            this.cbCargo.Name = "cbCargo";
+            this.cbCargo.Size = new System.Drawing.Size(121, 21);
+            this.cbCargo.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(324, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Cargo:";
+            // 
+            // funcionarioTableAdapter1
+            // 
+            this.funcionarioTableAdapter1.ClearBeforeFill = true;
+            // 
             // CadastroFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(505, 369);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbCargo);
             this.Controls.Add(this.btnOrdenar);
             this.Controls.Add(this.labelCPF);
             this.Controls.Add(this.tbCPF);
@@ -311,6 +341,9 @@
         private System.Windows.Forms.Label labelCPF;
         private System.Windows.Forms.ColumnHeader Cpf;
         private System.Windows.Forms.Button btnOrdenar;
+        private System.Windows.Forms.ComboBox cbCargo;
+        private System.Windows.Forms.Label label1;
+        private windowsFormsPOODataSetTableAdapters.FuncionarioTableAdapter funcionarioTableAdapter1;
     }
 }
 

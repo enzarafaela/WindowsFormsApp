@@ -31,8 +31,26 @@ namespace WindowsFormsApp
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             LimparCampos();
-        } 
-                    
+
+            // manipulação do banco de dados
+            // Select
+            windowsFormsPOODataSet.FuncionarioDataTable funcionarioRows;
+            //funcionarioRows = funcionarioTableAdapter1.GetData(); // SELECT no banco de dados
+
+            funcionarioRows = funcionarioTableAdapter1.GetDataByIdIgual1();
+            for (int contador = 0; contador < funcionarioRows.Count; contador++)
+            {
+                ListViewItem item = new ListViewItem(new[] { Convert.ToString(funcionarioRows.Rows[contador].ItemArray[1]),
+                                                             Convert.ToString(funcionarioRows.Rows[contador].ItemArray[3]),
+                                                             Convert.ToString(funcionarioRows.Rows[contador].ItemArray[4]),
+                                                             Convert.ToString(funcionarioRows.Rows[contador].ItemArray[5]),
+                                                             Convert.ToString(funcionarioRows.Rows[contador].ItemArray[6]),
+                                                             Convert.ToString(funcionarioRows.Rows[contador].ItemArray[7]) });
+                // adicionando o objeto item na listview
+                lvListaFuncionarios.Items.Add(item);
+            } 
+        }
+
         private void LimparCampos()
         {
             tbNome.Text = "";
@@ -98,21 +116,44 @@ namespace WindowsFormsApp
                                                         float.Parse(tbDesconto.Text),
                                                         float.Parse(tbAdicional.Text),
                                                         tbCPF.Text,
-                                                        cbDesconto.Checked);
+                                                        cbDesconto.Checked,
+                                                        cbCargo.Text);
+
+                int index = listaFuncionarios.BuscarFuncionario(tbCPF.Text);
+                var funcionarioObj = listaFuncionarios.RetornaObjetoFuncionario(index);
 
                 // alimento uma "sublista" de item (que é uma linha da list view)
                 // "pegando" os dados  dos textbox 
-                ListViewItem item = new ListViewItem(new[] { tbNome.Text,
-                                                             tbCPF.Text,
-                                                            float.Parse(tbSalario.Text).ToString("N2"),
-                                                            float.Parse(tbDesconto.Text).ToString("N2"),
-                                                            float.Parse(tbAdicional.Text).ToString("N2"),
-                                                            float.Parse(tbLiquido.Text).ToString("N2") });
+                ListViewItem item = new ListViewItem(new[] { funcionarioObj.nome,
+                                                             funcionarioObj.cpf,
+                                                             funcionarioObj.SalarioBruto.ToString("N2"),
+                                                             funcionarioObj.desconto.ToString("N2"),
+                                                             funcionarioObj.adicional.ToString("N2"),
+                                                             funcionarioObj.salarioLiquido.ToString("N2") });
                 // adicionando o objeto item na listview
                 lvListaFuncionarios.Items.Add(item);
-
+                
                 MessageBox.Show($"Calculou Salário Líquido para o funcionário {tbNome.Text}", "Atenção");
                 LimparCampos();
+
+
+                // manipulação do banco de dados
+                // Insert:
+                try
+                {
+                    funcionarioTableAdapter1.Insert(funcionarioObj.nome, 
+                                                    funcionarioObj.cargo,
+                                                    funcionarioObj.cpf,
+                                                    Convert.ToDecimal(funcionarioObj.SalarioBruto),
+                                                    Convert.ToDecimal(funcionarioObj.adicional),
+                                                    Convert.ToDecimal(funcionarioObj.desconto),
+                                                    Convert.ToDecimal(funcionarioObj.salarioLiquido)); 
+                    
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show($"Erro ao salvar registro na tabela Funcionario.");
+                }
             }
         }
                
@@ -193,7 +234,7 @@ namespace WindowsFormsApp
                 // "pegando" os dados direto do funcionarioObj
                 ListViewItem item = new ListViewItem(new[] { funcionarioObj.nome,
                                                              funcionarioObj.cpf,
-                                                             funcionarioObj.salarioBruto.ToString("N2"),
+                                                             funcionarioObj.SalarioBruto.ToString("N2"),
                                                              funcionarioObj.desconto.ToString("N2"),
                                                              funcionarioObj.adicional.ToString("N2"),
                                                              funcionarioObj.salarioLiquido.ToString("N2") });

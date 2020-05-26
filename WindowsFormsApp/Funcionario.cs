@@ -9,8 +9,21 @@ namespace WindowsFormsApp
     public class Funcionario
     {
 
-        public string nome, cpf;
-        public float salarioBruto, desconto, adicional, salarioLiquido;
+        public string nome, cpf, cargo;
+        public float desconto, adicional, salarioLiquido;
+        private float salarioBruto;
+
+        // encapsulamento
+        public float SalarioBruto {
+            // acessador get = obtem o valor do campo
+            get => salarioBruto;
+
+            // acessador set = "seta" um valor no campo
+            set {
+                if (value > 0) // posso criar validações antes de "setar"
+                    salarioBruto = value;
+            }
+        }
 
         //TrÊs Sobrecargas do Construtor "Funcionario"
 
@@ -18,7 +31,7 @@ namespace WindowsFormsApp
         public Funcionario(string nomeParam, float salarioBrutoParam, string CPF)
         {
             this.nome = nomeParam;
-            this.salarioBruto = salarioBrutoParam;
+            this.SalarioBruto = salarioBrutoParam;
             this.cpf = CPF;
         }
 
@@ -30,13 +43,14 @@ namespace WindowsFormsApp
 
         // Construtor com cinco parametros
         public Funcionario(string nomeParam, float salarioBrutoParam, 
-                          float descontoParam, float adicionalParam, string CPF)
+                          float descontoParam, float adicionalParam, string CPF, string cargoParam)
         {
             this.nome = nomeParam;
-            this.salarioBruto = salarioBrutoParam;
+            this.SalarioBruto = salarioBrutoParam;
             this.adicional = adicionalParam;
             this.desconto = descontoParam;
             this.cpf = CPF;
+            this.cargo = cargoParam;
         }
 
         
@@ -51,6 +65,11 @@ namespace WindowsFormsApp
         public void CalcularLiquido(float salario, float adicional)
         {
             this.salarioLiquido = (salario + adicional);
+        }
+
+        public void CalcularBonus()
+        {
+            this.adicional = this.SalarioBruto * 1 / 100;
         }
     }
 }
