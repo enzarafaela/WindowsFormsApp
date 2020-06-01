@@ -28,5 +28,10 @@ namespace WindowsFormsApp
             Application.Exit();
         }
 
-     }
+        private void AendaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Agenda minhaJanela = new Agenda();
+            minhaJanela.ShowDialog();
+        }
+    }
 }
