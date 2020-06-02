@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agenda.cs">
+    <Compile Include="CadastroAgenda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agenda.Designer.cs">
-      <DependentUpon>Agenda.cs</DependentUpon>
+    <Compile Include="CadastroAgenda.Designer.cs">
+      <DependentUpon>CadastroAgenda.cs</DependentUpon>
     </Compile>
     <Compile Include="CadastroFuncionarioBD.cs">
       <SubType>Form</SubType>
@@ -58,6 +58,9 @@
     <Compile Include="CadastroFuncionarioBD.Designer.cs">
       <DependentUpon>CadastroFuncionarioBD.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntitiesAgenda\Agenda.cs" />
+    <Compile Include="EntitiesAgenda\DomainException.cs" />
+    <Compile Include="EntitiesAgenda\Pessoa.cs" />
     <Compile Include="Gerente.cs" />
     <Compile Include="ListaFuncionario.cs" />
     <Compile Include="Principal.cs">
@@ -80,8 +83,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>windowsFormsPOODataSet.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Agenda.resx">
-      <DependentUpon>Agenda.cs</DependentUpon>
+    <EmbeddedResource Include="CadastroAgenda.resx">
+      <DependentUpon>CadastroAgenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CadastroFuncionarioBD.resx">
       <DependentUpon>CadastroFuncionarioBD.cs</DependentUpon>

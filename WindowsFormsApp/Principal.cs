@@ -30,8 +30,8 @@ namespace WindowsFormsApp
 
         private void AendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Agenda minhaJanela = new Agenda();
-            minhaJanela.ShowDialog();
+            CadastroAgenda cadastroAgenda = new CadastroAgenda();
+            cadastroAgenda.ShowDialog();
         }
     }
 }
