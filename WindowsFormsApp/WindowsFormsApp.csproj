@@ -63,6 +63,8 @@
     <Compile Include="EntitiesAgenda\Pessoa.cs" />
     <Compile Include="Gerente.cs" />
     <Compile Include="ListaFuncionario.cs" />
+    <Compile Include="ManipulaAgenda\Conexao.cs" />
+    <Compile Include="ManipulaAgenda\Manipulacao.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -243,6 +243,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agenda";
+            this.Load += new System.EventHandler(this.CadastroAgenda_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -55,6 +55,8 @@ namespace WindowsFormsApp
                 lvAgenda.Items.Add(item);
 
                 agenda.Armazenar(boxNome.Text, boxEndereco.Text, boxTelefone.Text, boxEmail.Text);
+
+                ManipulaAgenda.Manipulacao.InserirRegistro(boxNome.Text, boxEndereco.Text, boxTelefone.Text, boxEmail.Text);
             }
         }
 
@@ -62,6 +64,8 @@ namespace WindowsFormsApp
         {
             ListViewItem item = lvAgenda.SelectedItems[0];
             int index = lvAgenda.Items.IndexOf(item);
+
+            string nomeOriginal = lvAgenda.SelectedItems[0].SubItems[0].Text;
 
             lvAgenda.SelectedItems[0].SubItems.Clear();
             agenda.Remover(index);
@@ -102,6 +106,31 @@ namespace WindowsFormsApp
                 boxEmail.Text    = item.SubItems[3].Text;
             }
 
+            Pessoa pessoa = new Pessoa();
+            pessoa.Nome = "Enza";
+
+        }
+
+        private void CadastroAgenda_Load(object sender, EventArgs e)
+        {
+            // string escape = @"\n";
+            // MessageBox.Show("Teste" + escape + "Teste");
+
+            List<Pessoa> pessoasRegistros = ManipulaAgenda.Manipulacao.SelecionarRegistros();
+
+            for (int contador = 0; contador < pessoasRegistros.Count; contador++)
+            {
+                ListViewItem item = new ListViewItem(new[] { pessoasRegistros[contador].Nome,
+                                                             pessoasRegistros[contador].Endereco,
+                                                             pessoasRegistros[contador].Telefone,
+                                                             pessoasRegistros[contador].Email});
+                lvAgenda.Items.Add(item);
+
+                agenda.Armazenar(pessoasRegistros[contador].Nome,
+                                pessoasRegistros[contador].Endereco,
+                                pessoasRegistros[contador].Telefone,
+                                pessoasRegistros[contador].Email);
+            }
         }
     }
 }

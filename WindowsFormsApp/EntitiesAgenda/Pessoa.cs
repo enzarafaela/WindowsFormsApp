@@ -16,10 +16,11 @@ namespace WindowsFormsApp.EntitiesAgenda
         private string telefone;
 
         // Encapsula os campos. 
-        public string Nome { get => nome; set => nome = value; }
+        
         public string Endereco { get => endereco; set => endereco = value; }
         public string Telefone { get => telefone; set => telefone = value; }
         public string Email { get => email; set => email = value; }
+        public string Nome { get => nome; set => nome = value; }
 
         // Multiplos construtores
         // São chamados no momento em que o objeto é instanciado.
@@ -45,6 +46,7 @@ namespace WindowsFormsApp.EntitiesAgenda
                 throw new DomainException("E-mail Invalido");
             */
             Nome = nome;
+            this.Nome = nome;
             Endereco = endereco;
             Telefone = telefone;
             Email = email;

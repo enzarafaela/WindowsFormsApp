@@ -37,10 +37,10 @@ namespace WindowsFormsApp
             windowsFormsPOODataSet.FuncionarioDataTable funcionarioRows;
             //funcionarioRows = funcionarioTableAdapter1.GetData(); // SELECT no banco de dados
 
-            funcionarioRows = funcionarioTableAdapter1.GetDataByIdIgual1();
+            //funcionarioRows = funcionarioTableAdapter1.GetDataByIdIgual1();
             for (int contador = 0; contador < funcionarioRows.Count; contador++)
             {
-                ListViewItem item = new ListViewItem(new[] { Convert.ToString(funcionarioRows.Rows[contador].ItemArray[1]),
+                ListViewItem item = new ListViewItem(new[] { Convert.ToString(funcionarioRows.Rows[contador].ItemArray[0]),
                                                              Convert.ToString(funcionarioRows.Rows[contador].ItemArray[3]),
                                                              Convert.ToString(funcionarioRows.Rows[contador].ItemArray[4]),
                                                              Convert.ToString(funcionarioRows.Rows[contador].ItemArray[5]),
@@ -48,7 +48,11 @@ namespace WindowsFormsApp
                                                              Convert.ToString(funcionarioRows.Rows[contador].ItemArray[7]) });
                 // adicionando o objeto item na listview
                 lvListaFuncionarios.Items.Add(item);
-            } 
+            }
+
+           
+
+            
         }
 
         private void LimparCampos()
