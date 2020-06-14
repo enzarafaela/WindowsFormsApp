@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -41,10 +42,13 @@ namespace WindowsFormsApp
                 int index = lvAgenda.Items.IndexOf(lvAgenda.SelectedItems[0]);
                 agenda.Editar(pessoa, index);
 
+                string nomeOriginal = lvAgenda.SelectedItems[0].SubItems[0].Text;
                 lvAgenda.SelectedItems[0].SubItems[0].Text = pessoa.Nome;
                 lvAgenda.SelectedItems[0].SubItems[1].Text = pessoa.Endereco;
                 lvAgenda.SelectedItems[0].SubItems[2].Text = pessoa.Telefone;
                 lvAgenda.SelectedItems[0].SubItems[3].Text = pessoa.Email;
+
+                ManipulaAgenda.Manipulacao.AtualizarRegistro(pessoa.Nome, pessoa.Endereco, pessoa.Telefone, pessoa.Email, nomeOriginal);
             }
             else
             {
@@ -71,6 +75,8 @@ namespace WindowsFormsApp
             agenda.Remover(index);
 
             lvAgenda.SelectedItems[0].Selected = false;
+
+            ManipulaAgenda.Manipulacao.ExcluirRegistro(nomeOriginal);
         }
 
         private void LvAgenda_ColumnClick(object sender, ColumnClickEventArgs e)

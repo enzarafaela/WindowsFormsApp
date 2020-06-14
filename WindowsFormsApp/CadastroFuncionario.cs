@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace WindowsFormsApp
             // manipulação do banco de dados
             // Select
             windowsFormsPOODataSet.FuncionarioDataTable funcionarioRows;
-            //funcionarioRows = funcionarioTableAdapter1.GetData(); // SELECT no banco de dados
+            funcionarioRows = funcionarioTableAdapter1.GetData(); // SELECT no banco de dados
 
             //funcionarioRows = funcionarioTableAdapter1.GetDataByIdIgual1();
             for (int contador = 0; contador < funcionarioRows.Count; contador++)
